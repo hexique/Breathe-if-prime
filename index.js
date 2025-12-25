@@ -11,6 +11,9 @@ let secs_unfloor;
 let isSecsPrime = false;
 
 let max = 0;
+let max_gap = 0;
+let primeConcetration = 0;
+let gaps = [];
 let logs = [];
 
 function isPrime(num){
@@ -95,20 +98,25 @@ function stop(){
 function format(min, max, current){
     let result = ""
 
-    for(let i = min; i <= max; i++)
-        if(i === current){
+    for(let i = min; i <= max; i++) {
+        if(i < 0){
+            result += ` <font class="hide"> </font>`
+        } else if(i === current){
             if(primeNums.includes(i)){
-                result += ` <b><u class="green">${i}</u></b>`
+                result += ` <b class="green">[ <u>${i}</u> ]</b>`
             } else{
-                result += ` <b><u class="black">${i}</u></b>`
+                result += ` <b class="black">[ <u>${i}</u> ]</b>`
             }
         } else {
-            if(primeNums.includes(i)){
+            if(i < current){
+                result += ` ${i}`
+            } else if(primeNums.includes(i)){
                 result += ` <font class="green">${i}</font>`
             } else{
                 result += ` <font class="black">${i}</font>`
             }
         }
+    }
 
     return result
 }
