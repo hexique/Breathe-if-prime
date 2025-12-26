@@ -48,24 +48,26 @@ function updateStats(){
 function switch_func(){
     if(canPause){
         canPause = false;
-        console.log("stop()", canPause)
         stop()
     }
     else{
         canPause = true;
         document.getElementById("startBtn").textContent = "Stop"
-        console.log("start()", canPause)
         start()
     }
 }
 
 function start(){
-    console.log(isActive)
+    console.log(`isActive : ${isActive} ->`)
     if(!isActive){
         reset()
         start_time = Date.now() - elapsed_time;
         timer = setInterval(update, 10);
         isActive = true;
+        console.log(`${isActive}.\n`)
+    } else {
+        isActive = false;
+        console.log(`${isActive}.\n`) 
     }
 
 }
@@ -130,7 +132,7 @@ function update(){
         document.getElementById("nums").innerHTML = format(secs-10, secs+10, secs)
         
         if(isSecsPrime){
-            console.log(`${secs} is prime!!!`)
+            // console.log(`${secs} is prime!!!`)
             document.getElementById("isPrime").innerHTML = `<font class="green">${secs} is PRIME!!!</font>`
 
         } else {
